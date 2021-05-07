@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+	
+	<head>
+		<meta charset="utf-8">
+		<title>CoinLizard: Cryptocurrency Prices and Market Capitalizations</title>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+		<link rel="stylesheet" href="style.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+	</head>
+	
+	<body>
+		
+		<!-- START HEADER -->
+		<header class="container-fluid">
+			<div class="row">
+				<div class="col-md-9">
+					<h1>CoinLizard</h1>
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Markets</a></li>
+						<li><a href="#">DeFi</a></li>
+						<li><a href="#">NFT</a></li>
+						<li><a href="#">Portfolio</a></li>
+						<li><a href="#">Exchanges</a></li>
+						<li><a href="#">News</a></li>
+						<li><a href="#">Tools</a></li>
+						<li><a href="#">Resources</a></li>
+						<li><a href="#">Learn</a></li>
+						<li><a href="#">Community</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<form action="" method="POST">
+						<input type="search" name="search">
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div id="coins">
+					<span>Coins</span>:
+					<a href="#"></a>
+				</div>
+				<div id="exchanges">
+					<span>Exchanges</span>:
+					<a href="#"></a>
+				</div>
+				<div id="market-cap">
+					<span>Market Cap</span>:
+					<a href="#"></a>
+				</div>
+				<div id="24h-vol">
+					<span>24h Vol</span>:
+					<a href="#"></a>
+				</div>
+				<div id="dominance">
+					<span>Dominance</span>:
+					<span id="btcd"></span>
+					<span id="ethd"></span>
+				</div>
+				<div id="eth-gas">
+					<span>ETH Gas</span>:
+					<span id="ethgas"></span>
+				</div>
+			</div>
+		</header>
+		<!-- END HEADER -->
+		
+		<!-- START CRYPTOCURRENCY TABLE -->
+		<div class="container-fluid">
+		<div class="row">
+			<h2>Cryptocurrency Prices by Market Cap</h2>
+			
+			<table>
+				<tr>
+					<th colspan="2">#</th>
+					<th>Coin</th>
+					<td>&nbsp;</td>
+					<th>Price</th>
+					<th>1h</th>
+					<th>24h</th>
+					<th>7d</th>
+					<th>24h Volume</th>
+					<th>Mkt Cap</th>
+				</tr>
+			</table>
+			
+		</div>
+		</div>
+		<!-- END CRYPTOCURRENCY TABLE -->
+		
+		<!-- START FOOTER -->
+		<footer class="container-fluid">
+			<div id="disclaimer" class="row">
+				<div class="col-md-12">
+					<p>
+					IMPORTANT DISCLAIMER: All content provided herein our website, hyperlinked sites, associated applications, forums, blogs, social media accounts and other platforms (“Site”) is for your general information only, procured from third party sources. We make no warranties of any kind in relation to our content, including but not limited to accuracy and updatedness. No part of the content that we provide constitutes financial advice, legal advice or any other form of advice meant for your specific reliance for any purpose. Any use or reliance on our content is solely at your own risk and discretion. You should conduct your own research, review, analyse and verify our content before relying on them. Trading is a highly risky activity that can lead to major losses, please therefore consult your financial advisor before making any decision. No content on our Site is meant to be a solicitation or offer.
+					</p>
+				</div>
+			</div>
+			
+			<div id="bottom-navigation" class="row">
+				<div class="col-md-5">
+					<img src="" alt="CoinLizard Logo" width="290" height="85">
+					<p>CoinLizard provides a fundamental analysis of the crypto market. In addition to tracking price, volume and market capitalization, CoinLizard tracks community growth, open-source code development, major events and on-chain metrics.</p>
+				</div>
+				<div class="col-md-2">
+					<h5>CoinLizard</h5>
+					<ul>
+						<li><a href="#">About Us</a></li>
+						<li><a href="#">Methodology</a></li>
+						<li><a href="#">Careers</a></li>
+						<li><a href="#">Branding Guide</a></li>
+						<li><a href="#">Request Form</a></li>
+						<li><a href="#">Advertising</a></li>
+					</ul>
+				</div>
+				<div class="col-md-2">
+					<h5>Donations</h5>
+					<ul>
+						<li><a href="#">Bitcoin</a></li>
+						<li><a href="#">Litecoin</a></li>
+						<li><a href="#">Bitcoin Cash</a></li>
+						<li><a href="#">Ethereum</a></li>
+						<li><a href="#">TomoChain</a></li>
+						<li><a href="#">Beam</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h5>Interested to stay up-to-date with cryptocurrencies?</h5>
+					<p>Get the latest crypto news, updates, and reports by subscribing to our free newsletter.</p>
+					<p>Your email address:</p>
+					<form action="" method="POST">
+						<input type="email" name="email"><br>
+						<button type="submit">Subscribe</button>
+					</form>
+				</div>
+				
+				<div id="copyright-row" class="row">
+					<div class="col-md-9">
+						<ul>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Help Center</a></li>
+							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">Disclaimer</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">Terms of Service</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Bug Bounty</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">Ad Policy</a></li>
+						</ul>
+						<p>© 2021 CoinLizard. All Rights Reserved.</p>
+					</div>
+					<div class="col-md-3">
+						<h5>Download our app now:</h5>
+						<a href="#"><img src="https://static.coingecko.com/s/coingecko_logos/google_play_store-836027fba5bce52aa7f436d7edf8fadf2707c7607842f994e3af58748ef141a0.svg" width="140" height="42" alt="Google Play Store Button"></a>
+						<a href="#"><img src="https://static.coingecko.com/s/coingecko_logos/apple_app_store-2b96ff447647976493b4622a5af700da687ffb28b64e3bd8c9c1bbd7ac20d028.svg" width="140" height="42" alt="Apple App Store Button"></a>
+						<br>
+						<a href="#"><img src="https://static.coingecko.com/s/chrome_branding_logo-2b6b19311f6dcc6acfdacfdc4b8cf88be082ce7729e959cc7b015f594b3bc956.png" width="140" height="42" alt="Chrome Store Button"></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- END FOOTER -->
+	
+	</body>
+	
+</html>
