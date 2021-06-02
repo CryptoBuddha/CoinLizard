@@ -75,6 +75,42 @@ body a {
 	font-weight: 700;
 }
 
+.cyan-color {
+	color: #00bbd4;
+}
+
+a.cyan-color:focus, a.cyan-color:hover {
+	color: #00bbd4;
+}
+
+.text-green {
+	color: #4eaf0a;
+}
+
+.text-danger, .text-danger a {
+	color: #e15241 !important;
+}
+
+a.green-hover-focus:focus, a.green-hover-focus:hover {
+	color: #7ab52b;
+}
+
+/*
+#eth-gas {
+	width:100%; 
+	text-align:"right";
+}
+*/
+#eth-gas img {
+	vertical-align: middle;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
 .market-cap-table {/*
 	justify-content: center;*/
 }
