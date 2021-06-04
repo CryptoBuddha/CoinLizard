@@ -122,6 +122,12 @@ h2 {
 	color: #4a4a4a;
 }
 
+.green-button:hover {
+	background: #8dc647;
+	border-color: #8dc647;
+	color: #fff;
+}
+
 .container {
 	width: 1300px;
 	max-width: 100%;

@@ -118,6 +118,49 @@ $(document).ready(async function() {
 	// END FETCHING AND DISPLAYING MARKET INFO
 	//**************************************************************************
 	
+	//**************************************************************************
+	// START FETCHING AND DISPLAYING COINS TABLE
+	//**************************************************************************
+	
+	let page = 1
+	let onePageMarkets = await getMarkets(page, 100);
+	displayCoinInfoInColumns();
+	$(".prev-button").click(function() {
+		page--;
+		$('tr.content-row').remove();
+		 onePageMarkets = await getMarkets(page, 100);
+		displayCoinInfoInColumns() 
+	});
+	$(".next-button").click(function() {
+		page++;
+		$('tr.content-row').remove();
+		 onePageMarkets = await getMarkets(page, 100);
+		displayCoinInfoInColumns() 
+	});
+	
+	 $('tr.content-row').remove();
+	function displayCoinInfoInColumns() {
+		for (i=0; i < onePageMarkets.length; i++) {
+
+			let oneHourPercentageChangeRounded = Math.round(onePageMarkets[i].price_change_percentage_1h_in_currency  * 10) / 10;
+			let sevenDayPercentageChangeRounded = Math.round(onePageMarkets[i].price_change_percentage_7d_in_currency  * 10) / 10;
+			let twentyFourHourPercentageChangeRounded = Math.round(onePageMarkets[i].market_cap_change_percentage_24h  * 10) / 10;
+			let coinCounter = (page - 1) * 100 + 1 + i;
+			var tr;
+			tr = $('<tr/>');
+			tr.append("<td>Star</td>");
+			tr.append("<td>" +coinCounter + "</td>");
+			tr.append("<td>" + onePageMarkets[i].name + "</td>");
+			tr.append("<td>" + onePageMarkets[i].symbol + "</td>");
+			tr.append("<td>" + "$" + onePageMarkets[i].current_price.toLocaleString() + "</td>");
+			tr.append("<td>" + oneHourPercentageChangeRounded + "%" + "</td>");
+			tr.append("<td>" + twentyFourHourPercentageChangeRounded + "%" + "</td>");
+			tr.append("<td>" + sevenDayPercentageChangeRounded + "%" + "</td>");
+			tr.append("<td>" + "$" + onePageMarkets[i].total_volume.toLocaleString() + "</td>");
+			tr.append("<td>" + "$" +  onePageMarkets[i].market_cap.toLocaleString() + "</td>");
+			$("tbody").append(tr);
+		}
+	}
 });
 	
 	//**************************************************************************
@@ -182,9 +225,9 @@ const getEntireExchangesList = async function(pageNo = 1) {
 
 // getMarkets(): Gets all the markets results (250 results) for a specific page (pageNo) and returns them 
 
-const getMarkets = async function(pageNo = 1) {
+const getMarkets = async function(pageNo = 1, perPage= 250) {
 
-let actualUrl=ListOfMarketsURL + `?vs_currency=usd&order=market_cap_desc&per_page=250&page=${pageNo}&sparkline=false`;
+let actualUrl=ListOfMarketsURL + `?vs_currency=usd&order=market_cap_desc&per_page=${perPage}&page=${pageNo}&sparkline=false&price_change_percentage=1h%2C7d`;
 var apiResults=await fetch(actualUrl)
 .then(res=>{
 return res.json();
@@ -196,11 +239,11 @@ return apiResults;
 
 // Recursively calls getMarkets() until it reaches a page with no results and then concatenates all of the results
 
-const getEntireMarketsList = async function(pageNo = 1) {
+const getEntireMarketsList = async function(pageNo = 1, perPage = 250) {
   const results = await getMarkets(pageNo);
   console.log("Retreiving data from API for page : " + pageNo);
   if (results.length>0) {
-    return results.concat(await getEntireMarketsList(pageNo+1));
+    return results.concat(await getEntireMarketsList(pageNo+1, perPage));
   } else {
 	 return results;
   }
