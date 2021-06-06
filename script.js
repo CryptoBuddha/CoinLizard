@@ -123,41 +123,53 @@ $(document).ready(async function() {
 	//**************************************************************************
 	
 	let page = 1
-	let onePageMarkets = await getMarkets(page, 100);
-	displayCoinInfoInColumns();
-	$(".prev-button").click(function() {
-		page--;
-		$('tr.content-row').remove();
-		 onePageMarkets = await getMarkets(page, 100);
-		displayCoinInfoInColumns() 
-	});
-	$(".next-button").click(function() {
-		page++;
-		$('tr.content-row').remove();
-		 onePageMarkets = await getMarkets(page, 100);
-		displayCoinInfoInColumns() 
-	});
+	createTable(page);
 	
-	 $('tr.content-row').remove();
-	function displayCoinInfoInColumns() {
-		for (i=0; i < onePageMarkets.length; i++) {
-
-			let oneHourPercentageChangeRounded = Math.round(onePageMarkets[i].price_change_percentage_1h_in_currency  * 10) / 10;
-			let sevenDayPercentageChangeRounded = Math.round(onePageMarkets[i].price_change_percentage_7d_in_currency  * 10) / 10;
-			let twentyFourHourPercentageChangeRounded = Math.round(onePageMarkets[i].market_cap_change_percentage_24h  * 10) / 10;
+	//prev button: decrease page by one, refill table with new data
+    $(".prev-button").click(async function() {
+        //if already at page 1, refresh table and end function
+        if(page == 1){
+            await createTable(page);
+            return;
+        }
+        page--;
+        await createTable(page); 
+    });
+	
+	 //next button: increase page by one, refill table with new data
+	
+    $(".next-button").click(async function() {
+        page++;
+        await createTable(page); 
+    });
+	
+	async function createTable(_page){
+        //get all data from api
+        let pageMarkets = await getMarkets(_page, 100);
+        //built table with api data result
+        displayCoinInfoInColumns(pageMarkets);
+    }
+	
+	
+	function displayCoinInfoInColumns(_pageMarkets) {
+		$('tr.content-row').remove();
+		for (i=0; i < _pageMarkets.length; i++) {
+			let oneHourPercentageChangeRounded = Math.round(_pageMarkets[i].price_change_percentage_1h_in_currency  * 10) / 10;
+			let sevenDayPercentageChangeRounded = Math.round(_pageMarkets[i].price_change_percentage_7d_in_currency  * 10) / 10;
+			let twentyFourHourPercentageChangeRounded = Math.round(_pageMarkets[i].market_cap_change_percentage_24h  * 10) / 10;
 			let coinCounter = (page - 1) * 100 + 1 + i;
 			var tr;
-			tr = $('<tr/>');
+			tr = $('<tr class="content-row"/>');
 			tr.append("<td>Star</td>");
 			tr.append("<td>" +coinCounter + "</td>");
-			tr.append("<td>" + onePageMarkets[i].name + "</td>");
-			tr.append("<td>" + onePageMarkets[i].symbol + "</td>");
-			tr.append("<td>" + "$" + onePageMarkets[i].current_price.toLocaleString() + "</td>");
+			tr.append("<td>" + _pageMarkets[i].name + "</td>");
+			tr.append("<td>" + _pageMarkets[i].symbol + "</td>");
+			tr.append("<td>" + "$" + _pageMarkets[i].current_price.toLocaleString() + "</td>");
 			tr.append("<td>" + oneHourPercentageChangeRounded + "%" + "</td>");
 			tr.append("<td>" + twentyFourHourPercentageChangeRounded + "%" + "</td>");
 			tr.append("<td>" + sevenDayPercentageChangeRounded + "%" + "</td>");
-			tr.append("<td>" + "$" + onePageMarkets[i].total_volume.toLocaleString() + "</td>");
-			tr.append("<td>" + "$" +  onePageMarkets[i].market_cap.toLocaleString() + "</td>");
+			tr.append("<td>" + "$" + _pageMarkets[i].total_volume.toLocaleString() + "</td>");
+			tr.append("<td>" + "$" +  _pageMarkets[i].market_cap.toLocaleString() + "</td>");
 			$("tbody").append(tr);
 		}
 	}
