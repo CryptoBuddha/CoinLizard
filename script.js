@@ -160,19 +160,34 @@ $(document).ready(async function() {
 			let coinCounter = (page - 1) * 100 + 1 + i;
 			var tr;
 			tr = $('<tr class="content-row"/>');
-			tr.append("<td>Star</td>");
+			tr.append("<td>&nbsp;</td>");
 			tr.append("<td>" +coinCounter + "</td>");
 			tr.append("<td>" + _pageMarkets[i].name + "</td>");
-			tr.append("<td>" + _pageMarkets[i].symbol + "</td>");
-			tr.append("<td>" + "$" + _pageMarkets[i].current_price.toLocaleString() + "</td>");
-			tr.append("<td>" + oneHourPercentageChangeRounded + "%" + "</td>");
-			tr.append("<td>" + twentyFourHourPercentageChangeRounded + "%" + "</td>");
-			tr.append("<td>" + sevenDayPercentageChangeRounded + "%" + "</td>");
-			tr.append("<td>" + "$" + _pageMarkets[i].total_volume.toLocaleString() + "</td>");
-			tr.append("<td>" + "$" +  _pageMarkets[i].market_cap.toLocaleString() + "</td>");
+			tr.append('<td class="uppercase">' + _pageMarkets[i].symbol + "</td>");
+			tr.append('<td class="text-right">' + "$" + _pageMarkets[i].current_price.toLocaleString() + "</td>");
+			tr.append('<td class="text-right">' + oneHourPercentageChangeRounded + "%" + "</td>");
+			tr.append('<td class="text-right">' + twentyFourHourPercentageChangeRounded + "%" + "</td>");
+			tr.append('<td class="text-right">' + sevenDayPercentageChangeRounded + "%" + "</td>");
+			tr.append('<td class="text-right">' + "$" + _pageMarkets[i].total_volume.toLocaleString() + "</td>");
+			tr.append('<td class="text-right">' + "$" +  _pageMarkets[i].market_cap.toLocaleString() + "</td>");
 			$("tbody").append(tr);
 		}
 	}
+	
+	//**************************************************************************
+	// END FETCHING AND DISPLAYING COINS TABLE
+	//**************************************************************************
+	
+	//**************************************************************************
+	// START COINS TABLE PAGINATION
+	//**************************************************************************
+	
+	// Calculate the number of pages
+	let lastPage = Math.round(coins.length / 100);
+	console.log("Number of pages is: " + lastPage);
+	
+	// 
+	
 });
 	
 	//**************************************************************************
